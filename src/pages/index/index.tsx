@@ -65,7 +65,7 @@ export default defineComponent((props): (() => JSX.Element) => {
     console.log('updated!')
   })
   onUnmounted(() => {
-    console.log('unmounted!')
+    console.log('unmounted!!!')
   })
   const App = () => <view>{'ddd'}</view>
   return () => (
