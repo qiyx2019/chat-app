@@ -39,6 +39,7 @@ const title = ref('Hello')
   color: #8f8f94;
 }
 </style> */}
+import { onLoad } from '@dcloudio/uni-app'
 import {
   defineComponent,
   ref,
@@ -67,12 +68,15 @@ export default defineComponent((props): (() => JSX.Element) => {
   onUnmounted(() => {
     console.log('unmounted!!!')
   })
+  onLoad((e) => {
+    console.log(e)
+  })
   const App = () => <view>{'ddd'}</view>
   return () => (
     <>
      <view>21asdsad3213</view>
      <App /> 
-      {[1, 2, 3, 4, 5,6,7,8].map((item) => (
+      {[1, 2, 3].map((item) => (
         <div>
           <div
             onClick={() =>{}}
