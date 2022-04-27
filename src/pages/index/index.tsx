@@ -10,8 +10,8 @@ import {
   onUnmounted,
   getCurrentInstance,
 } from 'vue'
-import {Subject} from 'rxjs';
-import {concatMap} from 'rxjs/operators';  
+//@ts-ignore
+import socket from '../../utils/sockt'
 interface Ref<T> {
   value: T
 }
@@ -20,6 +20,18 @@ export default defineComponent({
    setup:(props) => {
     const internalInstance = getCurrentInstance()
     onMounted(() => {
+      socket.on('connect', () => {
+				console.log(socket.auth.id, 'id') // x8WIv7-mJelg7on_ALbx
+			})
+      socket.on('user connected', (res) => {
+				console.log(res, 'user connected')
+			})
+      socket.on('private message',(res) => {
+        console.log(res,'private message')
+      })
+      socket.on('connect_error', e => {
+				console.log('connect_error', e);
+			});
       console.log('mounted!',props)
     })
     onUpdated(() => {
@@ -32,9 +44,7 @@ export default defineComponent({
       console.log(e)
     })
     const App = () => <view>{'ddd'}</view>
-    let sub = new Subject<any>();
-    sub.pipe(concatMap(x => x)).subscribe(x => console.log(x,'sub'));
-    sub.next([123,456])
+    
     return () => (
       <>
        <view>21asdsad3213</view>

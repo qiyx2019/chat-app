@@ -4,7 +4,7 @@
   "scripts": {
     "dev:app": "uni -p app",
     "dev:custom": "uni -p",
-    "dev:h5": "uni",
+    "dev:h5": "uni --port 8080",
     "dev:h5:ssr": "uni --ssr",
     "dev:mp-alipay": "uni -p mp-alipay",
     "dev:mp-baidu": "uni -p mp-baidu",
@@ -44,8 +44,10 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-alpha-3040820220424001",
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3040820220424001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3040820220424001",
+    "@hyoga/uni-socket.io": "^3.0.4",
     "install": "^0.13.0",
     "rxjs": "^7.5.5",
+    "socket.io-client": "^4.5.0",
     "vue": "^3.2.33",
     "vue-i18n": "^9.1.9",
     "vuex": "^4.0.2"

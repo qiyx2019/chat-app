@@ -6,8 +6,6 @@ import {
   onUnmounted,
   getCurrentInstance
 } from 'vue'
-import {Subject} from 'rxjs'
-import {map} from 'rxjs/operators'
  import UIcon from '../../../uview/components/u-icon/u-icon.vue'
  //@ts-ignore
  import {userChater} from '@/utils/index'
@@ -25,7 +23,8 @@ export default defineComponent({
       console.log('mounted!',$baseUrl)
     })
     onUpdated(() => {
-      
+      const findData = chatStore.findMsg({name:123})
+      console.log(findData,'chatStore.findMsg({name:123})')
       console.log('updated!')
     })
     onUnmounted(() => {
@@ -36,16 +35,15 @@ export default defineComponent({
       
     })
     onShow((e)=>{
-       
+      const findData = chatStore.findMsg({name:123})
+      console.log(findData,'chatStore.findMsg({name:123})') 
       console.log(e,'onShow')
     })
-    const findData = chatStore.findMsg({name:123})
-    console.log(findData,'chatStore.findMsg({name:123})')
+    
     return () => (
       <>
        <view onClick={
          ()=> {chatStore.saveMsg(i++,{name:123})
-         console.log(findData,'chatStore.findMsg({name:123})')
         }
        }>user</view>
        <UIcon name="photo" color="#2979ff" size="28" />
