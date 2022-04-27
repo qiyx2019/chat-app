@@ -1,44 +1,3 @@
-{/* <template>
-  <view class="content">
-    <image class="logo" src="/static/logo.png" />
-    <view class="text-area">
-      <text class="title">{{ title }}</text>
-    </view>
-  </view>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-const title = ref('Hello')
-</script>
-
-<style>
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  height: 200rpx;
-  width: 200rpx;
-  margin-top: 200rpx;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 50rpx;
-}
-
-.text-area {
-  display: flex;
-  justify-content: center;
-}
-
-.title {
-  font-size: 36rpx;
-  color: #8f8f94;
-}
-</style> */}
 import { onLoad } from '@dcloudio/uni-app'
 import {
   defineComponent,
@@ -51,8 +10,8 @@ import {
   onUnmounted,
   getCurrentInstance,
 } from 'vue'
-
-  
+import {Subject} from 'rxjs';
+import {concatMap} from 'rxjs/operators';  
 interface Ref<T> {
   value: T
 }
@@ -72,6 +31,9 @@ export default defineComponent((props): (() => JSX.Element) => {
     console.log(e)
   })
   const App = () => <view>{'ddd'}</view>
+  let sub = new Subject<any>();
+  sub.pipe(concatMap(x => x)).subscribe(x => console.log(x,'sub'));
+  sub.next([123,456])
   return () => (
     <>
      <view>21asdsad3213</view>
