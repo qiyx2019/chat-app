@@ -8,29 +8,35 @@ import {
   onMounted,
   onUpdated,
   onUnmounted,
+  getCurrentInstance
 } from 'vue'
+ import UIcon from '../../../uview/components/u-icon/u-icon.vue'
 interface Ref<T> {
   value: T
 }
 
-export default defineComponent((props): (() => JSX.Element) => {
-  onMounted(() => {
-    console.log('mounted!')
-  })
-  onUpdated(() => {
-    console.log('updated!')
-  })
-  onUnmounted(() => {
-    console.log('unmounted!!!')
-  })
-  onLoad((e) => {
-    console.log(e)
-  })
-  return () => (
-    <>
-     <view>user</view>
-     
+export default defineComponent({
+  setup(){
+    const {$baseUrl} = getCurrentInstance()?.appContext.config.globalProperties as any;
+    onMounted(() => {
       
-    </>
-  )
+      console.log('mounted!',$baseUrl)
+    })
+    onUpdated(() => {
+      console.log('updated!')
+    })
+    onUnmounted(() => {
+      console.log('unmounted!!!')
+    })
+    onLoad((e)=>{
+      console.log(e,'onLoad')
+    })
+    return () => (
+      <>
+       <view>user</view>
+       <UIcon name="photo" color="#2979ff" size="28" />
+      </>
+    )
+  }
+   
 })
