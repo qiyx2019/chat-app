@@ -9,7 +9,7 @@ import {
 interface Ref<T> {
 	value: T
 }
-import './login.css'
+
 export default defineComponent({
 	setup() {
 		onMounted(() => {
@@ -32,14 +32,15 @@ export default defineComponent({
 		})
 
 		return () => (
-
-			<view className="slideshow">
-				<view className="images">
-					把图片放到这里面123。
+			<div class="container">
+				<view class="slideshow">
+					<view class="images" >
+					</view>
 				</view>
-				<view className="images-2"></view>
-			</view>
-
+				<div class='form'>
+				
+				</div>
+			</div>
 		)
 	},
 })
