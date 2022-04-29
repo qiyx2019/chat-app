@@ -1,32 +1,35 @@
 .slideshow {
-  /* position: relative; */
-  overflow: hidden;
+	/* position: relative; */
+	overflow: hidden;
 }
-.images ,.image-2{
-  background: url('../../static/login.jpeg');
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 300%;
-  animation: slideshow 10s linear infinite;
-  transform: translate3d(0, 0, 0);
+
+.images,
+.image-2 {
+	background: url('../../static/login.jpeg');
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 300%;
+	animation: slideshow 20s linear infinite;
+	transform: translate3d(0, 0, 0);
 }
+
 @keyframes slideshow {
-  0%    { left: 0; }
-  100%  { left: -200%; }
+	from {
+		transform: translateX(0);
+	}
+
+	to {
+		transform: translateX(-50%);
+	}
+
 }
-@keyframes moveSlideshow {  
-  100% { 
-    -webkit-transform: translateX(-200%);  
-  }
-}
+
 
 .form {
 	position: absolute;
 	left: 50%;
 	top: 50%;
-	transform: translate(-50%,-50%);
+	transform: translate(-50%, -50%);
 }
-
-
