@@ -1,0 +1,48 @@
+.slideshow {
+  /* position: relative; */
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  background-color: red;
+}
+.images {
+  background-image: url('../../static/login.jpeg');
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 200%;
+  width: 100%;
+  border: 1px solid red;
+  animation: slideshow 10s linear infinite;
+  transform: translate3d(0, 0, 0);
+}
+@keyframes slideshow {
+  0%    { top: 0; }
+  100%  { top: -200%; }
+}
+@keyframes moveSlideshow {  
+  100% { 
+    -webkit-transform: translateY(-200%);  
+  }
+}
+.slideshow:hover .images {
+  animation-duration: 5s;
+} 
+.slideshow  .images {
+  transition: opacity 0.5s ease-out; 
+  /* 慢 */
+  animation: moveSlideshow 30s linear infinite;
+}
+.slideshow  .images-2 {
+  transition: opacity 0.5s ease-out; 
+  /* 慢 */
+  animation: moveSlideshow 30s linear infinite;
+}
+.images {
+  /* 快 */
+  background-position:  200px 0;
+  animation: moveSlideshow 20s linear infinite;
+}
+.slideshow:hover .images-2 {
+  opacity: 0;
+}
