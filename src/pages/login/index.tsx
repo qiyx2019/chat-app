@@ -6,7 +6,7 @@ import {
   onUnmounted,
   getCurrentInstance,
 } from 'vue'
-import LoginFrom from '../../components/login-form/login-form.vue'
+import LoginForm from '../../components/login-form/login-form.vue'
 interface Ref<T> {
   value: T
 }
@@ -31,22 +31,13 @@ export default defineComponent({
     onShow((e) => {
       console.log(e, 'onShow')
     })
-    const formSubmit = (e) => {
-      console.log(e.detail.value, 'e')
+    const onFinish = (value) => {
+      console.log(value, 'onFinish')
     }
-    const formReset = (e) => {}
-		let formData = {
-			name:'',
-			hobby:''
-		}
     return () => (
       <div class="container">
-        {/* <view class="slideshow">
-          <view class="images"></view>
-        </view> */}
-				<uni-nav-bar dark title="导航栏组件"></uni-nav-bar>
         <div class="form">
-				<LoginFrom />
+				<LoginForm onFinish={(v)=>onFinish(v)} />
         </div>
       </div>
     )

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="container">
     <uni-forms ref="form" :modelValue="formData" :rules="rules">
       <uni-forms-item isrequired name="name">
         <uni-easyinput prefixIcon="person" v-model="formData.name" placeholder="请输入昵称" :styles="styles"
@@ -12,19 +12,20 @@
         </uni-easyinput>
       </uni-forms-item>
     </uni-forms>
-    <button @click="submitForm">Submit</button>
+     
   </div>
+  <button @click="submitForm">Submit</button>
 </template>
-<script lang="'ts">
+<script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
 export default {
   name: 'loginForm',
-  setup() {
-    const form = ref(null)
+  setup(props:any,{emit}:any) {
+    const form = ref<any>(null)
     const submitForm = () => {
-      form.value.validate().then(res => {
-        console.log('表单数据信息：', res);
-      }).catch(err => {
+      form.value.validate().then((res:any) => {
+        emit('finish',res);
+      }).catch((err:any) => {
         console.log('表单错误信息：', err);
       })
     }
@@ -86,5 +87,10 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style scoped>
+.container {
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
 </style>
