@@ -39,6 +39,16 @@
           v-model="formData.date"
         />
       </uni-forms-item>
+      <uni-forms-item isrequired name="phone" label="手机号">
+        <uni-easyinput
+          prefixIcon="notification-filled"
+          v-model="formData.phone"
+          placeholder="请输入手机号"
+          :styles="styles"
+          :placeholderStyle="placeholderStyle"
+        >
+        </uni-easyinput>
+      </uni-forms-item>
       <uni-forms-item isrequired name="mail" label="邮箱">
         <uni-easyinput
           prefixIcon="email"

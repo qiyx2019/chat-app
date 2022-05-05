@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <uni-card class="card-header" :isFull="true" title="暴打橙子🍊"  sub-title="ID: 9999" extra="额外信息" :thumbnail="avatar">
-				<span class="uni-body">这是一个通栏卡片 ，通栏没有外边距，左右会贴合父元素。</span>
+				<span class="uni-body">这里啥也没有</span>
 			</uni-card>
   <uni-card class="card-pad" :isFull="true" :is-shadow="false">
     <uni-list>
