@@ -5,10 +5,10 @@ onLaunch(async() => {
   const USER = userStore();
   const userInfo = await USER.getUserInfo;
   if(userInfo.id){
-    console.log("User1: " ,userInfo)
-    uni.switchTab({
-      url: '/pages/index/index'
-    })
+    // console.log("User1: " ,userInfo)
+    // uni.switchTab({
+    //   url: '/pages/index/index'
+    // })
   } else {
      console.log("User0: ",userInfo)
     uni.reLaunch({

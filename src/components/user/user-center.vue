@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <uni-card class="card-header" :isFull="true" title="暴打橙子🍊"  sub-title="ID: 9999" extra="额外信息" :thumbnail="avatar">
+    <uni-card class="card-header" :isFull="true" :title="userInfo.name"  sub-title="ID: 9999" extra="额外信息" :thumbnail="avatar">
 				<span class="uni-body">这里啥也没有</span>
 			</uni-card>
   <uni-card class="card-pad" :isFull="true" :is-shadow="false">
@@ -27,9 +27,17 @@
 import { defineComponent, ref, reactive } from 'vue'
 export default {
    name: 'userCenter',
+   props:{
+     userInfo:{
+       type: Object,
+       default:{}
+     }
+   },
    setup(props:any,{emit}:any) {
+     console.log(props,'userInfo')
      return {
-       avatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png'
+       avatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png',
+       userInfo:props.userInfo.value
      }
    }
 }

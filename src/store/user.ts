@@ -16,7 +16,7 @@ export default defineStore('user', {
         return state.userInfo
       }
       return data
-    },
+    }
   },
   actions: {
     async login(payload: LoginForm) {

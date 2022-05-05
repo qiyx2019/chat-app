@@ -1,47 +1,32 @@
-import { onLoad, onShow } from '@dcloudio/uni-app'
+import { onLoad, onShow ,onTabItemTap,onPullDownRefresh} from '@dcloudio/uni-app'
 import {
   defineComponent,
   onMounted,
   onUpdated,
   onUnmounted,
-  getCurrentInstance
+  getCurrentInstance,
+  reactive,
+  ref
 } from 'vue'
- //@ts-ignore
- import {userChater} from '@/utils/index'
+//@ts-ignore
+import { userChater } from '@/utils/index'
 import UserCenter from '@/components/user/user-center.vue'
-
+import userStore from '@/store/user'
+import { storeToRefs } from 'pinia'
 export default defineComponent({
-  setup(){
-    const chatStore = new userChater();
-    let i = 0;
-    const {$baseUrl} = getCurrentInstance()?.appContext.config.globalProperties as any;
-    onMounted(() => {
-      chatStore.saveMsg(1,{name:123});
-      console.log('mounted!',$baseUrl)
-    })
-    onUpdated(() => {
-      const findData = chatStore.findMsg({name:123})
-      console.log(findData,'chatStore.findMsg({name:123})')
-      console.log('updated!')
-    })
-    onUnmounted(() => {
-      console.log('unmounted!!!')
-    })
-    onLoad((e)=>{
-      console.log(e,'onLoad');
-      
-    })
-    onShow((e)=>{
-      const findData = chatStore.findMsg({name:123})
-      console.log(findData,'chatStore.findMsg({name:123})') 
-      console.log(e,'onShow')
-    })
-    
+   setup() {
+    const USER = userStore()
+    const userInfo =  ref({})
+    const getData = async () => {
+      const res = await USER.getUserInfo;
+      if (res) {
+        console.log('res',res)
+        userInfo.value =  {...res}
+      }
+    };
+    onLoad(()=>getData())
     return () => (
-      <>
-      <UserCenter />
-      </>
+        <UserCenter userInfo={userInfo} />
     )
-  }
-   
+  },
 })
