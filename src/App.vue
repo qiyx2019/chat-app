@@ -11,5 +11,5 @@ onHide(() => {
 });
 </script>
 <style>
-	@import './pages/login/login.css';
+  
 </style>
