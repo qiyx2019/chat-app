@@ -25,7 +25,11 @@ export default  defineStore('user',{
         url: '/pages/index/index'
       })
     },
-    async register(payload:LoginForm){
+    async register(payload:LoginForm,flag:boolean){
+      //通过flag来判断是注册还是忘记密码 false注册
+      if(flag) {
+        return ;
+      }
       const {code} = await httpRequest('/user/register',payload,'POST');
       if(code == 200) {
         uni.switchTab({

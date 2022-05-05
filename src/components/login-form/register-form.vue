@@ -8,7 +8,7 @@
         status-bar
         left-icon="left"
         left-text="返回"
-        :title="isRegister?'找回密码':'注册'"
+        :title="isRegister ? '找回密码' : '注册'"
         @clickLeft="back"
       />
     </div>
@@ -62,23 +62,32 @@
       </uni-forms-item>
       <uni-forms-item>
         <button class="uni-primary" type="primary" @click="submitForm">
-          {{isRegister?'找回密码':'注册'}}
+          {{ isRegister ? '找回密码' : '注册' }}
         </button>
       </uni-forms-item>
     </uni-forms>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, reactive } from 'vue'
+import { defineComponent, ref, reactive, onMounted } from 'vue'
 export default {
   name: 'registryForm',
-  setup({isRegister}: any, { emit }: any) {
+  props: {
+    isRegister: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  setup({ isRegister }: any, { emit }: any) {
+    onMounted(() => {
+      console.log(isRegister, 'isRegister')
+    })
     const form = ref<any>(null)
     const submitForm = () => {
       form.value
         .validate()
         .then((res: any) => {
-          emit('register', res)
+          emit('register', res,isRegister)
         })
         .catch((err: any) => {
           console.log('表单错误信息：', err)
@@ -158,7 +167,7 @@ export default {
       form,
       sex,
       back,
-      isRegister
+      isRegister,
     }
   },
 }
