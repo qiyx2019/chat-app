@@ -2,10 +2,11 @@
   "pages": [
 		{
       "path": "pages/login/index",
-      "style": {
-        "navigationBarTitleText": "登录",
-        "navigationBarBackgroundColor": "#fff",
-        "enablePullDownRefresh": false
+      "style":{
+        "navigationStyle":"custom",
+        "app-plus" :{
+          "titleView":false
+        }
       }
     },
     {
@@ -25,12 +26,6 @@
       }
     }
   ],
-  "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
-  },
   "tabBar": {
     "color": "#7A7E83",
     "selectedColor": "#3cc51f",
