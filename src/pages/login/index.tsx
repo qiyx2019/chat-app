@@ -6,7 +6,9 @@ import {
   onUnmounted,
   getCurrentInstance,
 } from 'vue'
-import LoginForm from '../../components/login-form/login-form.vue'
+import userStore from '@/store/user'
+import {storeToRefs} from 'pinia'
+import LoginForm from '@/components/login-form/login-form.vue'
 interface Ref<T> {
   value: T
 }
@@ -17,9 +19,6 @@ interface LoginForm {
 export default defineComponent({
   setup() {
     onMounted(() => {
-      // uni.switchTab({
-      //   url: '/pages/index/index'
-      // })
     })
     onUpdated(() => {
      
@@ -32,9 +31,13 @@ export default defineComponent({
     })
     onShow((e) => {
     })
+    const USER = userStore();
+    const {userInfo} = storeToRefs(USER)
     const onFinish = (value:LoginForm) => {
-      console.log(value, 'onFinish')
+      USER.login(value);
     }
+     
+     
     return () => (
       <div style={{height: '100vh'}}>
 				<LoginForm onFinish={onFinish} />

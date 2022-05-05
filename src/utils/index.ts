@@ -22,3 +22,6 @@ export class userChater extends ChatRoom {
     return res
   }
 }
+export const httpRequest = () => {
+  return {data:{name:123}}
+}
