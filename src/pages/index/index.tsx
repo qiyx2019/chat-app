@@ -10,9 +10,7 @@ import {
   onUnmounted,
   getCurrentInstance,
 } from 'vue'
-interface Ref<T> {
-  value: T
-} 
+
 
 export default defineComponent({
    setup:(props) => {

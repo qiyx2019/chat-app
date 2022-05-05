@@ -82,7 +82,7 @@ export default {
     onMounted(() => {
       console.log(isRegister, 'isRegister')
     })
-    const form = ref<any>(null)
+    const form:Ref<any> = ref(null)
     const submitForm = () => {
       form.value
         .validate()
