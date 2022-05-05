@@ -9,13 +9,13 @@ export default defineStore('user', {
   getters: {
     getUserInfo: async(state) => {
       //先从state取,没有的话去本地缓存去取
+      const {data} = await uni.getStorage({
+        key: 'userInfo',
+      }) as any;
       if (state.userInfo.id) {
         return state.userInfo
       }
-      const userInfo = await uni.getStorage({
-        key: 'userInfo',
-      })
-      return userInfo
+      return data
     },
   },
   actions: {
@@ -24,6 +24,7 @@ export default defineStore('user', {
       console.log(res);
       if (res.status == 201) {
         this.userInfo = res.data.data
+        console.log(this.userInfo,'this.userInfo')
         uni.setStorage({ key: 'userInfo', data: res.data.data })
         console.log('updated')
         uni.switchTab({
