@@ -8,7 +8,9 @@ import {
 } from 'vue'
  //@ts-ignore
  import {userChater} from '@/utils/index'
-import UserCenter from '@/components/user/user-center.vue'
+interface Ref<T> {
+  value: T
+}
 
 export default defineComponent({
   setup(){
@@ -39,7 +41,11 @@ export default defineComponent({
     
     return () => (
       <>
-      <UserCenter />
+       <view onClick={
+         ()=> {chatStore.saveMsg(i++,{name:123})
+        }
+       }>user</view>
+       
       </>
     )
   }
