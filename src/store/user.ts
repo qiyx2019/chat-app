@@ -3,23 +3,31 @@ import {defineStore} from 'pinia'
 import {httpRequest} from '@/utils/index'
 export default  defineStore('user',{
   state:()=>  ({
-      userInfo:{},
+      userInfo:{
+        userId:null
+      },
       isFlag:true, //默认登录页
     }),
   getters:{
-    getUserInfo(state){
-      return state.userInfo
+    getUserInfo:(state) => {
+      //先从state取,没有的话去本地缓存去取
+      if(state.userInfo.userId) {
+        return state.userInfo.userId;
+      }
+      const userInfo = uni.getStorageSync('userInfo').userId;
+      return userInfo;
     },
-    getFlag(state) {
-      return state.isFlag;
-    }
+    
   },
   actions:{
     async login(payload:LoginForm) {
-      console.log(payload,'actions');
       const {data} = await httpRequest('/user/login',payload,'POST');
       if(data) {
         this.userInfo = data;
+        uni.setStorageSync(
+          'userInfo',
+          data
+        )
       }
       uni.switchTab({
         url: '/pages/index/index'
