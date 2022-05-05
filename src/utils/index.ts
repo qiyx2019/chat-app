@@ -10,18 +10,27 @@ class ChatRoom {
 export class userChater extends ChatRoom {
   constructor() {
     super()
-    this.msg = new Map();
+    this.msg = new Map()
   }
   saveMsg(userId: Uid, msg: Msg) {
-   console.log(userId,msg,'msg')
+    console.log(userId, msg, 'msg')
   }
   findMsg(userId: Uid): UserMsg<Msg> {
-    console.log(this.msg,'userId')
-    let res:UserMsg<Msg> = [] ;
+    console.log(this.msg, 'userId')
+    let res: UserMsg<Msg> = []
     //@ts-ignore
     return res
   }
 }
-export const httpRequest = () => {
-  return {data:{name:123}}
+export const httpRequest = async (url_:string, data:any,method:methodType) => {
+  console.log( $baseUrl + url_)
+  let dataSource:any = await uni.request({
+    url: $baseUrl + url_,
+    method,
+    data,
+  })
+  if (dataSource[1]) {
+    return dataSource[1]['data']
+  }
+  return dataSource[0]
 }

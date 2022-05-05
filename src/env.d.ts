@@ -6,3 +6,11 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+declare interface LoginForm {
+  name: string;
+  pwd: string;
+} 
+declare interface Ref<T> {
+  value: T
+}
+declare type methodType  =  'GET' | 'POST' | 'PUT' | 'DELETE'
