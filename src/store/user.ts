@@ -3,11 +3,15 @@ import {defineStore} from 'pinia'
 import {httpRequest} from '@/utils/index'
 export default  defineStore('user',{
   state:()=>  ({
-      userInfo:{}
+      userInfo:{},
+      isFlag:true, //默认登录页
     }),
   getters:{
     getUserInfo(state){
       return state.userInfo
+    },
+    getFlag(state) {
+      return state.isFlag;
     }
   },
   actions:{
@@ -20,6 +24,15 @@ export default  defineStore('user',{
       uni.switchTab({
         url: '/pages/index/index'
       })
+    },
+    async register(payload:LoginForm){
+      const {code} = await httpRequest('/user/register',payload,'POST');
+      if(code == 200) {
+        uni.switchTab({
+          url: '/pages/login/index'
+        })
+      }
+       
     }
   }
 })

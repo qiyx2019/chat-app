@@ -1,12 +1,20 @@
 <template>
   <div class="container">
+    <div style="height: 45px">
+      <uni-nav-bar
+        dark
+        shadow
+        background-color="#007AFF"
+        status-bar
+        left-icon="left"
+        left-text="返回"
+        :title="isRegister?'找回密码':'注册'"
+        @clickLeft="back"
+      />
+    </div>
     <uni-forms class="form" ref="form" :modelValue="formData" :rules="rules">
-      <uni-forms-item>
-        <div class="login-logo">
-          <img src="@/static/logo.png" alt="" />
-        </div>
-      </uni-forms-item>
-      <uni-forms-item isrequired name="name">
+      <uni-forms-item> </uni-forms-item>
+      <uni-forms-item isrequired name="name" label="昵称">
         <uni-easyinput
           prefixIcon="person"
           v-model="formData.name"
@@ -16,7 +24,32 @@
         >
         </uni-easyinput>
       </uni-forms-item>
-      <uni-forms-item isrequired name="pwd">
+      <uni-forms-item isrequired name="sex" label="性别">
+        <uni-data-checkbox
+          v-model="formData.sex"
+          :localdata="sex"
+        ></uni-data-checkbox>
+      </uni-forms-item>
+      <uni-forms-item isrequired name="date" label="生日">
+        <uni-datetime-picker
+          type="date"
+          :clear-icon="false"
+          style="border: 1px solid #2979ff; border-radius: 5px"
+          :placeholderStyle="placeholderStyle"
+          v-model="formData.date"
+        />
+      </uni-forms-item>
+      <uni-forms-item isrequired name="mail" label="邮箱">
+        <uni-easyinput
+          prefixIcon="email"
+          v-model="formData.mail"
+          placeholder="请输入邮箱"
+          :styles="styles"
+          :placeholderStyle="placeholderStyle"
+        >
+        </uni-easyinput>
+      </uni-forms-item>
+      <uni-forms-item isrequired name="pwd" label="密码">
         <uni-easyinput
           :styles="styles"
           :placeholderStyle="placeholderStyle"
@@ -28,20 +61,9 @@
         </uni-easyinput>
       </uni-forms-item>
       <uni-forms-item>
-        <button
-          class="uni-primary form-submit"
-          type="primary"
-          @click="submitForm"
-        >
-          登录
+        <button class="uni-primary" type="primary" @click="submitForm">
+          {{isRegister?'找回密码':'注册'}}
         </button>
-      </uni-forms-item>
-      <uni-forms-item>
-        <div class="form-bottom">
-          <div class="form-register" @click="goToRegister(false)">注册</div>
-          <div>|</div>
-          <div class="form-register" @click="goToRegister(true)">忘记密码</div>
-        </div>
       </uni-forms-item>
     </uni-forms>
   </div>
@@ -49,14 +71,14 @@
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
 export default {
-  name: 'loginForm',
-  setup(props: any, { emit }: any) {
+  name: 'registryForm',
+  setup({isRegister}: any, { emit }: any) {
     const form = ref<any>(null)
     const submitForm = () => {
       form.value
         .validate()
         .then((res: any) => {
-          emit('finish', res)
+          emit('register', res)
         })
         .catch((err: any) => {
           console.log('表单错误信息：', err)
@@ -65,7 +87,24 @@ export default {
     let formData = reactive({
       name: '',
       pwd: '',
+      sex: 0,
+      date: '',
+      mail: '',
     })
+    const sex = [
+      {
+        text: '男',
+        value: 0,
+      },
+      {
+        text: '女',
+        value: 1,
+      },
+      {
+        text: '未知',
+        value: 2,
+      },
+    ]
     const styles = {
       borderColor: '#2979ff',
     }
@@ -107,8 +146,8 @@ export default {
         label: '密码',
       },
     }
-    const goToRegister = (flag:boolean) => {
-      emit('change',flag);
+    const back = () => {
+      emit('change')
     }
     return {
       formData,
@@ -117,7 +156,9 @@ export default {
       placeholderStyle,
       rules,
       form,
-      goToRegister
+      sex,
+      back,
+      isRegister
     }
   },
 }
@@ -128,26 +169,13 @@ export default {
   height: 100%;
 }
 .form {
-  position: absolute;
-  top: 40%;
-  left: 45%;
-  transform: translate(-40%, -45%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .login-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.form-submit {
-  margin-top: 200px;
-}
-.form-bottom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-}
-.form-register:hover {
-  color: #2979ff;
 }
 </style>
