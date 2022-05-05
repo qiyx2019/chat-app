@@ -99,6 +99,7 @@ export default {
       sex: 0,
       date: '',
       mail: '',
+      phone:''
     })
     const sex = [
       {

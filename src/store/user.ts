@@ -1,50 +1,49 @@
-import {defineStore} from 'pinia'
+import { defineStore } from 'pinia'
 //@ts-ignore
-import {httpRequest} from '@/utils/index'
-export default  defineStore('user',{
-  state:()=>  ({
-      userInfo:{
-        userId:null
-      },
-      isFlag:true, //默认登录页
-    }),
-  getters:{
-    getUserInfo:(state) => {
+import { httpRequest } from '@/utils/index'
+export default defineStore('user', {
+  state: () => ({
+    userInfo: {},
+    isFlag: true, //默认登录页
+  }),
+  getters: {
+    getUserInfo: async(state) => {
       //先从state取,没有的话去本地缓存去取
-      if(state.userInfo.userId) {
-        return state.userInfo.userId;
+      if (state.userInfo.id) {
+        return state.userInfo
       }
-      const userInfo = uni.getStorageSync('userInfo').userId;
-      return userInfo;
-    },
-    
-  },
-  actions:{
-    async login(payload:LoginForm) {
-      const {data} = await httpRequest('/user/login',payload,'POST');
-      if(data) {
-        this.userInfo = data;
-        uni.setStorageSync(
-          'userInfo',
-          data
-        )
-      }
-      uni.switchTab({
-        url: '/pages/index/index'
+      const userInfo = await uni.getStorage({
+        key: 'userInfo',
       })
+      return userInfo
     },
-    async register(payload:LoginForm,flag:boolean){
-      //通过flag来判断是注册还是忘记密码 false注册
-      if(flag) {
-        return ;
-      }
-      const {code} = await httpRequest('/user/register',payload,'POST');
-      if(code == 200) {
+  },
+  actions: {
+    async login(payload: LoginForm) {
+      const res = await httpRequest('/user/login', payload, 'POST') as any; 
+      console.log(res);
+      if (res.status == 201) {
+        this.userInfo = res.data.data
+        uni.setStorage({ key: 'userInfo', data: res.data.data })
+        console.log('updated')
         uni.switchTab({
-          url: '/pages/login/index'
+          url: '/pages/index/index',
         })
+        console.log('updated','dddddd')
       }
        
-    }
-  }
+    },
+    async register(payload: LoginForm, flag: boolean) {
+      //通过flag来判断是注册还是忘记密码 false注册
+      if (flag) {
+        return
+      }
+      const { status } = await httpRequest('/user/register', payload, 'POST')
+      if (status == 201) {
+        uni.switchTab({
+          url: '/pages/login/index',
+        })
+      }
+    },
+  },
 })

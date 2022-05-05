@@ -29,8 +29,5 @@ export const httpRequest = async (url_:string, data:any,method:methodType) => {
     method,
     data,
   })
-  if (dataSource[1]) {
-    return dataSource[1]['data']
-  }
-  return dataSource[0]
+  return dataSource['data']
 }
