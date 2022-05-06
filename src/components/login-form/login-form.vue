@@ -122,7 +122,7 @@ export default {
   },
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 .container {
   background-image: url('@/static/980.jpeg');
   height: 100%;

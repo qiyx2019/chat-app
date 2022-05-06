@@ -11,55 +11,28 @@ import {
   getCurrentInstance,
 } from 'vue'
 import Msg from '@/components/msg/msg.vue'
-
+import socket from '@/utils/socket'
 export default defineComponent({
    setup:(props) => {
    
     onMounted(() => {
-   //    uni.request({
-   //      url: $baseUrl+'/user/update', //仅为示例，并非真实接口地址。
-   //      method:'POST',
-   //      data: {
-   //          payload:{
-   //            nickname:'214',
-   //          },
-   //          options: {
-   //            email:'18@qq.com'
-   //          }
-   //      },
-   //      header: {
-   //          'content-type':'application/json',
-   //          'custom-header': 'hello' //自定义请求头信息
-   //      },
-   //      success: (res) => {
-   //          console.log(res.data);
-   //      }
-   //  });
-   //    socket.on('connect', () => {
-			// 	console.log(socket.auth.id, 'id') // x8WIv7-mJelg7on_ALbx
-			// })
-   //    socket.on('user connected', (res:any) => {
-			// 	console.log(res, 'user connected')
-			// })
-   //    socket.on('private message',(res:any) => {
-   //      console.log(res,'private message')
-   //    })
-   //    socket.on('connect_error',( e:any) => {
-			// 	console.log('connect_error', e);
-			// });
-      console.log('mounted!',props)
-    })
-    onUpdated(() => {
-      console.log('updated!')
-    })
-    onUnmounted(() => {
-      console.log('unmounted!!!')
+     
+      socket.on('connect', () => {
+				console.log(socket.auth.id, 'id') // x8WIv7-mJelg7on_ALbx
+			})
+      socket.on('user connected', (res:any) => {
+				console.log(res, 'user connected')
+			})
+      socket.on('private message',(res:any) => {
+        console.log(res,'private message')
+      })
+      socket.on('connect_error',( e:any) => {
+				console.log('connect_error', e);
+			});
     })
     onLoad((e) => {
       console.log(e)
     })
-    const App = () => <view>{'ddd'}</view>
-    
     return () => (
       <>
         <Msg /> 

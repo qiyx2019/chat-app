@@ -5,11 +5,7 @@ import {$baseUrl} from './index'
 const socket = io($baseUrl, { 
  transports: [ 'websocket', 'polling' ],
  timeout: 5000,
- auth:{
-  username: 12334,  //test
-  id:'asdsadfasdD' //test
-},
- autoConnect:true
+ autoConnect:false
 });
 socket.onAny((event:Event, ...args:any):any => {
   console.log(event, args);

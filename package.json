@@ -44,6 +44,7 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-alpha-3040820220424001",
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3040820220424001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3040820220424001",
+    "@dcloudio/uni-ui": "^1.4.14",
     "@hyoga/uni-socket.io": "^3.0.4",
     "pinia": "^2.0.13",
     "socket.io-client": "^4.5.0",
@@ -58,7 +59,7 @@
     "@dcloudio/vite-plugin-uni": "3.0.0-alpha-3040820220424001",
     "@vitejs/plugin-vue-jsx": "^1.3.10",
     "sass": "^1.51.0",
-    "sass-loader": "^12.6.0",
+    "sass-loader": "^10.1.1",
     "typescript": "^4.6.3",
     "vite": "^2.9.6"
   }
