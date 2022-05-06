@@ -4,7 +4,7 @@ import userStore from '@/store/user'
 import { storeToRefs } from 'pinia'
 import RegisterForm from '@/components/login-form/register-form.vue'
 import LoginForm from '@/components/login-form/login-form.vue'
-import { onShow } from '@dcloudio/uni-app'
+import { onLoad, onShow } from '@dcloudio/uni-app'
 export default defineComponent({
   setup() {
     const USER = userStore()
@@ -12,7 +12,14 @@ export default defineComponent({
       status: true,
       isReg: false
      })
-    const { userInfo } = storeToRefs(USER)
+    onLoad(async()=>{
+      const data = await USER.getUserInfo;
+      if(data.id){
+        uni.switchTab({ 
+          url: '/pages/index/index'
+        })
+      }
+    })
     const onFinish = (value: LoginForm) => {
       USER.login(value)
     }
