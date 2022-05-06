@@ -44,7 +44,6 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-alpha-3040820220424001",
     "@dcloudio/uni-mp-weixin": "3.0.0-alpha-3040820220424001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-alpha-3040820220424001",
-    "@dcloudio/uni-ui": "^1.4.14",
     "@hyoga/uni-socket.io": "^3.0.4",
     "pinia": "^2.0.13",
     "socket.io-client": "^4.5.0",
