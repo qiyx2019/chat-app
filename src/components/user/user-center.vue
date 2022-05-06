@@ -22,6 +22,8 @@
 		</uni-list>
   </uni-card>
   <uni-card class="card-pad" :isFull="true" :is-shadow="false">
+  <uni-file-picker limit="1" :del-icon="false" disable-preview :imageStyles="imageStyles"
+					file-mediatype="image" @select="success">选择</uni-file-picker>
     <button class="uni-error" type="primary" @click="logout">退出</button>
   </uni-card>
   </div>
@@ -40,10 +42,30 @@ export default defineComponent({
         url:'/pages/login/index'
       })
      }
+     const success = (e) => {
+       console.log(e,'e');
+       let a = uni.uploadFile({
+							url: `http://localhost:3001/user/upload`, //接口地址	
+						// url: 'http://localhost:3001/uniapp/fish/uploadFile', 
+						filePath: e.tempFilePaths[0],
+						name: 'file',
+            formData:{
+              'id':(userInfo as any).id
+            }
+					});
+     }
      return {
        avatar: '../../static/zhanghao@2x.png',
        userInfo,
-       logout
+       logout,
+       imageStyles: {
+					width: 64,
+					height: 64,
+					border: {
+						radius: '50%'
+					}
+				},
+        success
      }
    }
 })

@@ -31,7 +31,10 @@ export default defineComponent({
     return () => (
       <div style={{ height: '100vh' }}>
         {isFlag.status ? (
-          <LoginForm onFinish={onFinish} onChange={onChange} />
+          <LoginForm 
+            onFinish={onFinish} 
+            onChange={onChange} 
+          />
         ) : (
           <RegisterForm
             isRegister={isFlag.isReg}
