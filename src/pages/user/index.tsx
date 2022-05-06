@@ -26,7 +26,7 @@ export default defineComponent({
     };
     onLoad(()=>getData())
     return () => (
-        <UserCenter userInfo={userInfo} />
+        <UserCenter userInfo={userInfo.value} />
     )
   },
 })

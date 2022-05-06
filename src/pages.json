@@ -14,6 +14,8 @@
       "style": {
         "navigationBarTitleText": "首页",
         "enablePullDownRefresh": false,
+        "navigationBarTextStyle":"white",
+        "navigationBarBackgroundColor":"#2979ff",
         "app-plus" :{
           "titleView":true
         }
@@ -24,6 +26,8 @@
       "style": {
         "navigationBarTitleText": "通讯录",
         "enablePullDownRefresh": false,
+        "navigationBarTextStyle":"white",
+        "navigationBarBackgroundColor":"#2979ff",
         "app-plus" :{
           "titleView":true
         }
@@ -42,26 +46,26 @@
   ],
   "tabBar": {
     "color": "#7A7E83",
-    "selectedColor": "#3cc51f",
+    "selectedColor": "#2979ff",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
+        "iconPath": "static/goods.png",
+        "selectedIconPath": "static/goods.png",
         "text": "消息"
       },
       {
         "pagePath": "pages/contacts/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
+        "iconPath": "static/distribution.png",
+        "selectedIconPath": "static/distribution.png",
         "text": "通讯录"
       },
       {
         "pagePath": "pages/user/index",
-        "iconPath": "static/logo.png",
-        "selectedIconPath": "static/logo.png",
+        "iconPath": "static/my.png",
+        "selectedIconPath": "static/my.png",
         "text": "我的"
       }
     ]
