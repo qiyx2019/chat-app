@@ -20,12 +20,10 @@ export default defineComponent({
         })
       }
     })
-    const onFinish = (value: LoginForm) => {
-      USER.login(value)
-    }
-    const onRegister = (value: LoginForm) => {
-      USER.register(value)
-    }
+    const onFinish = (value: LoginForm) => USER.login(value)
+    
+    const onRegister = (value: LoginForm) => USER.register(value)
+    
     const onChange = (flag: boolean) => {
       isFlag.status = !isFlag.status;
       isFlag.isReg = flag;
