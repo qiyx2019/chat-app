@@ -10,7 +10,7 @@ import {
   onUnmounted,
   getCurrentInstance,
 } from 'vue'
-
+import Msg from '@/components/msg/msg.vue'
 
 export default defineComponent({
    setup:(props) => {
@@ -62,19 +62,7 @@ export default defineComponent({
     
     return () => (
       <>
-       <view>21asdsad3213</view>
-       <App /> 
-        {[1, 2, 3].map((item) => (
-          <div>
-            <div
-              onClick={() =>{}}
-              style={{ width: 40, height: 40, color: 'red' }}
-            >
-              {item}
-            </div>
-          </div>
-        ))}
-        
+        <Msg /> 
       </>
     )
    }

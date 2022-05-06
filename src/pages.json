@@ -12,7 +12,7 @@
     {
       "path": "pages/index/index",
       "style": {
-        "navigationBarTitleText": "首页",
+        "navigationBarTitleText": "消息",
         "enablePullDownRefresh": false,
         "navigationBarTextStyle":"white",
         "navigationBarBackgroundColor":"#2979ff",

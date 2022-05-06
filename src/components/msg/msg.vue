@@ -1,0 +1,55 @@
+<template>
+  <uni-list>
+    <uni-list :border="true">
+      
+      <!-- 右侧带角标 -->
+      <uni-list-chat
+        title="qqqq"
+        avatar="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png"
+        note="您收到一条新的消息"
+        time="2020-02-02 20:20"
+        badge-text="12"
+      ></uni-list-chat>
+      <!-- 显示多头像 -->
+      <uni-list-chat
+        title="pdd"
+        :avatar-list="avatarList"
+        note="您收到一条新的消息"
+        time="2020-02-02 20:20"
+        badge-positon="right"
+        badge-text="22"
+      ></uni-list-chat>
+      <!-- 自定义右侧内容 -->
+    </uni-list>
+  </uni-list>
+</template>
+<script lang="ts" setup>
+const avatarList = [
+  {
+    url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png',
+  },
+  {
+    url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png',
+  },
+  {
+    url: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png',
+  },
+]
+
+</script>
+<style scoped>
+.chat-custom-right {
+	flex: 1;
+	/* #ifndef APP-NVUE */
+	display: flex;
+	/* #endif */
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+.chat-custom-text {
+	font-size: 12px;
+	color: #999;
+}
+</style>
