@@ -53,7 +53,7 @@ const options2 = [
     },
   },
   {
-    text: '确认',
+    text: '删除',
     style: {
       backgroundColor: '#F56C6C',
     },

@@ -19,20 +19,31 @@
  <uni-card class="card-pad" :isFull="true" :is-shadow="false">
     <uni-list>
 				<uni-list-item showArrow title="设置" :showExtraIcon="true" :extraIcon="{color: '#2979ff',size: '26',type: 'gear-filled'}" />
-			</uni-list>
+		</uni-list>
+  </uni-card>
+  <uni-card class="card-pad" :isFull="true" :is-shadow="false">
+    <button class="uni-error" type="primary" @click="logout">退出</button>
   </uni-card>
   </div>
 </template>
 <script lang="ts" >
-import { defineComponent, ref, reactive } from 'vue'
+import { defineComponent, toRefs, defineProps } from 'vue'
 export default defineComponent({
    name: 'userCenter',
    props:['userInfo'],
-   setup(props:any,{emit}:any) {
-     console.log(props,'props')
+   setup(props) {
+     const {userInfo} = toRefs(props) 
+     console.log(userInfo,'props')
+     const logout = async() => {
+      await uni.removeStorage({key:'userInfo'});
+      uni.redirectTo({
+        url:'/pages/login/index'
+      })
+     }
      return {
-       avatar: 'https://vkceyugu.cdn.bspapp.com/VKCEYUGU-dc-site/460d46d0-4fcc-11eb-8ff1-d5dcf8779628.png',
-       userInfo:props.userInfo
+       avatar: '../../static/zhanghao@2x.png',
+       userInfo,
+       logout
      }
    }
 })
