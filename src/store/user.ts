@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 //@ts-ignore
 import { httpRequest } from '@/utils/index'
 export default defineStore('user', {
-  state: () => ({
+  state: ():any => ({
     userInfo: {},
     isFlag: true, //默认登录页
   }),
@@ -12,7 +12,7 @@ export default defineStore('user', {
       const {data} = await uni.getStorage({
         key: 'userInfo',
       }) as any;
-      if (state.userInfo.id) {
+      if (state.userInfo?.id) {
         return state.userInfo
       }
       return data
@@ -24,13 +24,10 @@ export default defineStore('user', {
       console.log(res);
       if (res.status == 201) {
         this.userInfo = res.data.data
-        console.log(this.userInfo,'this.userInfo')
         uni.setStorage({ key: 'userInfo', data: res.data.data })
-        console.log('updated')
         uni.switchTab({
           url: '/pages/index/index',
         })
-        console.log('updated','dddddd')
       }
        
     },
